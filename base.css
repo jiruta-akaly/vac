@@ -1,0 +1,182 @@
+@charset "UTF-8";
+
+/*color*/
+.txt_white{color: #fff !important;}
+.txt_brown{color: #C18006 !important;}
+.txt_black{color: #000 !important;}
+.txt_red{color: #F00000 !important;}
+.txt_blue{color: #3100f7 !important;}
+.txt_green{color: #10cd10 !important;}
+
+header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1;
+}
+
+header ul{
+	padding: 0;
+	margin: 0;
+}
+
+header .nav_item {
+	margin-top: 10px;
+	display: block;
+	width: 200px;
+	text-align: center;
+}
+
+header .panel-inner li {
+	list-style: none;
+	position: relative;
+	padding: 0.5em 0.5em;
+	margin-bottom: 3px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #fff;
+	background: #5ab0f9;
+}
+
+header .panel-inner li a {
+	color: #fff;
+	display: block;
+	text-decoration: none;
+}
+
+header .panel-inner li a:hover {
+	cursor: pointer;
+	color: #f00;
+}
+
+body {
+	font-family: "メイリオ" , Meiryo , "Meiryo UI" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" ,   "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+	-webkit-text-size-adjust: 100%;
+	line-height: 1.15;
+	font-size: 1.2rem;
+	position: relative;
+	background-color: rgba( 255,255,224, 0.75 );
+	color: #000;
+}
+
+h1 {
+	text-align: center;
+	color: #000;
+}
+
+/*role-marker*/
+.doctor {
+	text-decoration: underline;
+}
+
+.millionaire {
+	background:linear-gradient(transparent 60%, #6495ed 60%);
+}
+
+.girl {
+	background:linear-gradient(transparent 60%, #ff66cc 60%);
+}
+
+.police {
+	background:linear-gradient(transparent 60%, #66ccff 60%);
+}
+
+.geologist {
+	background:linear-gradient(transparent 60%, #66ff66 60%);
+}
+
+.writter {
+	background:linear-gradient(transparent 60%, #fff000 60%);
+}
+
+.assistant {
+	background:linear-gradient(transparent 60%, #ffa500 60%);
+}
+
+.husband {
+	background:linear-gradient(transparent 60%, #66cdaa 60%);
+}
+
+.wife {
+	background:linear-gradient(transparent 60%, #da70d6 60%);
+}
+
+.contents {
+	font-size: 15px;
+	width: 800px;
+	margin: 0;
+	padding: 10px 10px;
+	border: 2px solid #aaa;
+	background-color: rgba( 255,250,205, 0.75 );
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	line-height: 20px;
+}
+
+.contents > .title {
+	font-size: 20px;
+	font-weight: bold;
+	color: #483d8b;
+	padding: 0;
+	margin: 0;
+	position: relative ;
+}
+
+.contents > p {
+	margin: 0;
+}
+
+.modal-content {
+	margin: 0 ;
+	position: fixed ;
+	display: none ;
+	z-index: 3 ;
+}
+
+#modal-overlay {
+	z-index: 2;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 120%;
+	background-color: rgba( 0,0,0, 0.75 );
+}
+
+.canvas-overlay {
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 120%;
+	opacity: 0.0;
+}
+
+.table-schejule {
+	border-spacing: 0 10px;
+}
+.table-schejule th {
+	vertical-align: top;
+	text-align: left;
+}
+
+.button-link {
+	color: #00f;
+	text-decoration: underline;
+}
+ 
+.button-link:hover {
+	cursor: pointer;
+	color: #f00;
+}
+
+/*モーダル1*/
+.pass-input {
+	margin: 0;
+	padding: 10px 20px;
+	border: 2px solid #aaa;
+	background-color: rgba( 255,255,255, 1 );
+}

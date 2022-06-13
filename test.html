@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- ビューポートの設定 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- スタイルシートの読み込み -->
+		<link href="base.css" rel="stylesheet">
+		<title>TEST HO</title>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+		<script src="test.js"></script>
+		<script type="text/javascript">
+		//メニューのドロップダウン
+		$(function(){
+			var $dropdown = $('.js-dropdown');
+			var DURATION = 200; //アニメーションの速さ
+			
+			function fadeOutMenu(){
+				$dropdown.removeClass('is-active')
+				.next('.js-dropdown-menu')
+				.stop()
+				.slideUp(DURATION);
+			}
+			
+			//表示を切り替える
+			function toggleMenu(){
+				var $self = $(this); //thisにはクリックした時の要素が入る
+				//要素が.is-activeを持っていない場合
+				if(!$self.hasClass('is-active')){
+				fadeOutMenu();
+			}
+			//クリックした要素を表示させる
+				$self.toggleClass('is-active')
+				.next('.js-dropdown-menu')
+				.stop().slideToggle(DURATION);
+			}
+			
+			$dropdown.on('click', toggleMenu);
+		});
+		</script>
+		<script type="text/javascript">
+		//パスワード正解時処理
+		function enterpass(pattern) {
+			if(pattern == 1){
+				//暗号化キー:"key"を用いて復号化
+				var decrypt = CryptoJS.AES.decrypt(addCont1, key).toString(CryptoJS.enc.Utf8);
+				$("#main").append(decrypt);
+				decrypt = CryptoJS.AES.decrypt(addMenu1, key).toString(CryptoJS.enc.Utf8);
+				$("#ulMenu").append(decrypt);
+				$("#add1").remove();
+				alert("一部の記憶が解放されました。");
+			}else if(pattern == 2){
+				//暗号化キー:"key"を用いて復号化
+				var decrypt = CryptoJS.AES.decrypt(addCont2, key).toString(CryptoJS.enc.Utf8);
+				$("#main").append(decrypt);
+				decrypt = CryptoJS.AES.decrypt(addMenu1, key).toString(CryptoJS.enc.Utf8);
+				$("#ulMenu").append(decrypt);
+				$("#add1").remove();
+				alert("真の記憶が解放されました。");
+			}
+		}
+		</script>
+		<script type="text/javascript">
+		$(document).ready(function () {
+			//画像の拡大縮小
+			$(document).on('click', '#img1', function () {
+				var w = $( window ).width();
+				var h = $( window ).height();
+				if($(this).width() == 375){
+					$(this).width(600);
+					$(this).height(720);
+					var cw = $(".modal-content").outerWidth();
+					var ch = $(".modal-content").outerHeight();
+					$(".modal-content").css( {"left": ((w - cw)/2) + "px","top": ((h - ch)/2) + "px"} );
+				}else{
+					$(this).width(375);
+					$(this).height(450);
+					var cw = $(".modal-content").outerWidth() ;
+					var ch = $(".modal-content").outerHeight() ;
+					$(".modal-content").css( {"left": ((w - cw)/2) + "px","top": ((h - ch)/2) + "px"} );
+				}
+			});
+			$(document).on('click', '#modal-submit', function () {
+				//パスワードの入力内容を取得
+				var inputPass = $("#pass").val();
+				
+				//暗号化してあるパスワードを復号
+				var decrypted1 = CryptoJS.AES.decrypt(pass1, key).toString(CryptoJS.enc.Utf8);
+				var decrypted2 = CryptoJS.AES.decrypt(pass2, key).toString(CryptoJS.enc.Utf8);
+				
+				if(inputPass == decrypted1){
+					enterpass(1)
+					$("#pass").val("");
+					$("#modal-overlay").click();
+				}else if(inputPass == decrypted2){
+					enterpass(2)
+					$("#pass").val("");
+					$("#modal-overlay").click();
+				}else{
+					alert("パスワードが異なります。")
+				}
+			});
+			
+			$(window).keydown(function(e) {
+				if (e.key === "m"){
+					$("#aModal1").click();
+					return false;
+				}
+				else if (e.key === "p"){
+					$("#aModal2").click();
+					return false;
+				}
+			});
+		});
+		</script>
+	</head>
+<body>
+<h1>テスト</h1>
+<header>
+	<li class="nav_item">
+		<a href="#" class="js-dropdown">MENU</a>
+		<div class="panel js-dropdown-menu" style="display:none;">
+			<ul id="ulMenu" class="panel-inner">
+				<li><a id="aModal1" name="aModal1" class="modal-syncer button-link" data-target="modal-content-01">地図</a></li>
+				<li><a href="#story">秘密</a></li>
+				<li><a href="#schejule">当日のあなたの行動</a></li>
+				<li><a href="#secret">禁句</a></li>
+				<li><a href="#information">公開情報</a></li>
+				<li><a href="#others">その他</a></li>
+			</ul>
+		</div>
+	</li>
+</header>
+<div id="main">
+	<!-- 秘密 -->
+	<div id="story" class="contents">
+		<p class="title">秘密</p>
+		<hr>
+		<p>
+			<span class="txt_red">あああああああああああああああ。</span>たああああああああああああああ。</br>
+			ああああああああああ<span class="txt_green">ああああああああああああああああああ</span>あああああああああああ。</br>
+			あああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			あああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			ああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			あああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			しかし、ああああああああああ<span class="txt_red">ああああああああああああああ</span>あああああああああああああああ。</br>
+			ああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			まあああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			あああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			そうして、ああああああああああああああああああああああああああああああああああ。</br>
+			『ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			ああああああああああああああああああああああああああああああああああああああああ。
+			あああああああああああああああああああああああああああああああああああああああ<span class="txt_green">ああああああああああああああああ</span>ああ。ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			あああああああああああ、<span class="txt_red">あああああああああああああああ</span>ああああああああああああああああああああああああああああああああああああああああああああああああああああ。あああああああああああああああああああああああああああああああああああああああああああああああああああああ<span class="txt_green">あああああああああああああああ</span>。</br>
+			あああああああああああああああああああああああああああああああああああああ。</br>
+			ああああああああああああああああああああああああああああ
+	</div>
+	<!-- 秘密 -->
+	</br>
+	
+	<!-- 行動 -->
+	<div id="schejule" class="contents">
+		<p class="title">当日のあなたの行動</p>
+		<hr>
+		<table class="table-schejule">
+		<tr>
+			<th>13:15~</th>
+			<td><span class="girl">●●</span>とああああああああああ。ああああああああああ。</td>
+		<tr>
+		</tr>
+			<th>13:35~</th> 
+			<td>
+				ああああああああああ<span class="husband">▲▲</span>があああああ。「ああああああああああああああああああああ」とあああああああ。
+				また、<span class="girl">●●</span>にも「ああああああああああ？」とあああああ。
+			</td>
+		</tr>
+		<tr>
+			<th>13:25~</th>
+			<td>
+				ああああああああああ。「ああああああああああああああああああああ。
+				３ああああああああああああああああああ、ああああああああああああああああ。」ああああああああああああああああああああ。
+			</td>
+		</tr>
+		<tr>
+			<th>13:45~</th>
+			<td>
+				<span class="doctor">△△</span>があああああ。<span class="husband">▲▲</span>をああああああ、<span class="doctor">△△</span>は「ああああああああああ。
+				ああああああああああ」とあああああ。また、ああああ<span class="girl">●●</span>にああああ、「ああああああああああああああ」とああああああああああ。
+			</td>
+		</tr>
+		<tr>
+			<th>13:50~</th>
+			<td><span class="doctor">△△</span>がああああああああああ。</td>
+		</tr>
+		<tr>
+			<th>13:55~</th>
+			<td>
+				ああああああ。ああで<span class="geologist">□□</span>とああああああ。
+				ああで<span class="police">■■</span>と<span class="assistant">▽▽</span>がああああああああああ、ああああああああああ。
+			</td>
+		</tr>
+		<tr>
+			<th>14:05~</th>
+			<td>ああああああああああ。ああああああああ。</td>
+		</tr>
+		<tr>
+			<th>14:25~</th>
+			<td>
+				ああああああああああああああああああああ。そこで<span class="wife">▼▼</span>とあああああああ、「ああああああああああ、ああああああああああ」とああああああああああ。
+				また、「ああああああああああああああああああああ？」とああああ。
+				「ああああああ」とああああああああああ。
+			</td>
+		</tr>
+		<tr>
+			<th>14:35~</th>
+			<td>
+				<span class="wife">▼</span>あああああああああああああああ。ああああ<span class="wife">▼▼</span>あああああああああああああ、ああああああああああ。
+				ああああああああああ。ああで<span class="writter">◆◆</span>と<span class="geologist">□□</span>をああああ。
+			</td>
+		</tr>
+		<tr>
+			<th>14:40~</th>
+			<td>ああああああああああ、<span class="girl">●●</span>があああああ。ああああああああああああああああああああああああ、ああああああ。ああああああ<span class="writter">◆◆</span>ああああああああああ。</td>
+		</tr>
+		<tr>
+			<th>14:45~</th>
+			<td>ああでは<span class="girl">●●</span>と<span class="police">■■</span>があああああああ。ああああああああああ<span class="girl">●●</span>をああああああああああ、ああああああああああ。</td>
+		</tr>
+		<tr>
+			<th>14:50~</th>
+			<td>ああああああああああ。しかし、<span class="doctor">△△</span>のああああああああああ。ああああああああああ。</td>
+		</tr>
+		<tr>
+			<th>15:30</th>
+			<td>ああああああああああああああああああああで、<span class="police">■■</span>が<span class="doctor">△△</span>ああああああああああ。</td>
+		</tr>
+		</table>
+	</div>
+	<!-- 行動 -->
+	</br>
+	
+	<!-- 禁句 -->
+	<div id="secret" class="contents">
+		<p class="title">禁句</p>
+		<hr>
+		<li>ああああああああああ。</li>
+		<li>ああああああああああああああああああああああああああ。</li>
+	</div>
+	<!-- 禁句 -->
+	</br>
+	
+	<!-- 公開情報 -->
+	<div id="information" class="contents">
+		<p class="title">公開情報</p>
+		<hr>
+		<p>
+			あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			ああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			あああああああああああああああああああああああああ。
+		</p>
+	</div>
+	<!-- 公開情報 -->
+	</br>
+	
+	<!-- その他 -->
+	<div id="others" class="contents">
+		<p class="title">その他</p>
+		<hr>
+		<p>
+			・■■について</br>
+			ああああああああああああああああああああああああああああああああああああ。
+			あああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			</br>
+			・××について</br>
+			ああああああああああああああああああああ。ああああああああああああああああああああああああああああああああああああああああああああああ。
+			ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ、
+			あああああああああああああああああああああああああああああああああああああああああああああああああああああああ。
+			あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ。</br>
+			</br>
+			・●●について</br>
+			あああああああああああああああああああああああああああああああああああああああああああああああああ、、
+			ああああああああああああああああああああああああ。
+		</p>
+	</div>
+	<!-- その他 -->
+	
+	</br>
+</div>
+
+<p id="add1"><a id="aModal2" name="aModal2" class="modal-syncer button-link" data-target="modal-content-02">朝焼けの記憶</a></p>
+
+<!-- モーダル（地図画像） [開始] -->
+<div id="modal-content-01" class="modal-content">
+	<!-- モーダルウィンドウのコンテンツ開始 -->
+	<img id="img1" class="fit-picture" src="./images/3.jpg" width="375" height="450">
+	<!-- モーダルウィンドウのコンテンツ終了 -->
+</div>
+<!-- モーダル（地図画像） [終了] -->
+
+<!-- モーダル（パスワード入力） [開始] -->
+<div id="modal-content-02" class="modal-content">
+	<!-- モーダルウィンドウのコンテンツ開始 -->
+	<div class="pass-input">
+		<input type="password" id="pass" name="password" minlength="8">
+		<p><a id="modal-submit" class="button-link">入力</a></p>
+	</div>
+	<!-- モーダルウィンドウのコンテンツ終了 -->
+</div>
+<!-- モーダル（パスワード入力） [終了] -->
+
+<!-- JavaScriptの読み込み -->
+<script src="modal.js"></script>
+</body>
+</html>
