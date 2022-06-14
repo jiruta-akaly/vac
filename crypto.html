@@ -32,6 +32,16 @@
 			$("#lblFukugoubun").html('EnCrypto:' + escapeHTML(decrypted));
 		}
 		
+		//ハッシュ化
+		function hash() {
+			var src = $("#txtHirabun").val();
+			var des = "";
+			
+			des = CryptoJS.SHA256(src).toString();
+			
+			$("#lblHash").html('Hash  :' + escapeHTML(des));
+		}
+		
 		function escapeHTML(string){
 			return string.replace(/&/g, '&lt;')
 			.replace(/</g, '&lt;')
@@ -55,6 +65,7 @@
 <label id="lblAngoubun"></label></br>
 <label id="lblFukugoubun"></label>
 <HR style="margin: 3em 0 ;">
-
+<button onclick="hash();">hash</button></br>
+<label id="lblHash"></label></br>
 </body>
 </html>
